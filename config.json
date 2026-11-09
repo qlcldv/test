@@ -1,7 +1,7 @@
 {
-  "updatedAt": "09:40:25 9/11/2026",
+  "updatedAt": "09:44:43 9/11/2026",
   "updatedBy": "Quản trị viên Hệ thống",
-  "timestamp": 1794192025657,
+  "timestamp": 1794192283691,
   "usersDB": [
     {
       "username": "admin",
@@ -36,7 +36,7 @@
       "password": "123",
       "fullName": "Dương Thị Thu Hiền",
       "role": "user",
-      "title": "Chuyên viên Đánh giá CLDV",
+      "title": "CVCC CLDV",
       "active": true,
       "perms": {
         "eval": true,
@@ -64,7 +64,7 @@
       "password": "123",
       "fullName": "Trương Quang Lâm",
       "role": "user",
-      "title": "Chuyên viên Đánh giá CLDV",
+      "title": "CVC CLDV",
       "active": true,
       "perms": {
         "eval": true,
@@ -92,7 +92,7 @@
       "password": "123",
       "fullName": "Nguyễn Văn Long",
       "role": "user",
-      "title": "Chuyên viên Đánh giá CLDV",
+      "title": "CVCC CLDV",
       "active": true,
       "perms": {
         "eval": true,
@@ -148,7 +148,7 @@
       "password": "123",
       "fullName": "Trần Viết Minh",
       "role": "user",
-      "title": "Chuyên viên Đánh giá CLDV",
+      "title": "Trưởng Bộ phận CLDV",
       "active": true,
       "perms": {
         "eval": true,
@@ -177,6 +177,34 @@
       "fullName": "Nguyễn Tuấn Anh",
       "role": "user",
       "title": "Chuyên viên Đánh giá CLDV",
+      "active": true,
+      "perms": {
+        "eval": true,
+        "skipSec": true,
+        "batchPass": true,
+        "basketDel": true,
+        "editSample": false,
+        "printPdf": true,
+        "viewAllBasket": false,
+        "editPrintReport": true,
+        "customDeduct": true,
+        "addManualErr": true,
+        "allowedSecs": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ]
+      }
+    },
+    {
+      "username": "loanntk",
+      "password": "123",
+      "fullName": "Nguyễn Thị Kim Loan",
+      "role": "user",
+      "title": "Phó Trưởng phòng CLDV",
       "active": true,
       "perms": {
         "eval": true,
