@@ -1,7 +1,7 @@
 {
-  "updatedAt": "09:44:43 9/11/2026",
+  "updatedAt": "10:14:54 9/11/2026",
   "updatedBy": "Quản trị viên Hệ thống",
-  "timestamp": 1794192283691,
+  "timestamp": 1794194094407,
   "usersDB": [
     {
       "username": "admin",
@@ -238,7 +238,9 @@
       }
     ],
     "overrides": {},
-    "deletedIds": [],
+    "deletedIds": [
+      "1_custom_4961"
+    ],
     "hiddenSampleIds": [
       "1_2",
       "1_3",
