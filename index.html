@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
-    <title>Phiếu Đánh Giá CLDV (98 Đơn Vị) - Bản Hiện Đại 2026</title>
+    <title>Phiếu Đánh Giá CLDV tại ĐVKD</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -1769,11 +1769,11 @@
         <form onsubmit="handleLoginSubmit(event)">
             <div class="login-field">
                 <label>👤 Tên đăng nhập (Username):</label>
-                <input type="text" id="login_username" class="form-control" placeholder="VD: hiendtt, lamqt, anhnt... hoặc chọn nhanh tên ở phía dưới" required autocomplete="username">
+                <input type="text" id="login_username" class="form-control" placeholder="Bấm chọn nhanh User bên dưới" required autocomplete="username">
             </div>
             <div class="login-field">
                 <label>🔒 Mật khẩu:</label>
-                <input type="password" id="login_password" class="form-control" placeholder="Nhập mật khẩu..." required autocomplete="current-password">
+                <input type="password" id="login_password" class="form-control" placeholder="Mặc định là: 123" required autocomplete="current-password">
             </div>
             <div id="login_error_msg" style="display:none; color:#dc2626; font-size:12px; font-weight:600; margin-bottom:8px;"></div>
             <button type="submit" class="btn-login-submit">🔐 ĐĂNG NHẬP HỆ THỐNG</button>
@@ -1782,12 +1782,12 @@
         <div class="quick-acc-pills">
             <span style="width:100%; font-size:11px; color:#64748b; font-weight:600;">⚡ Chọn nhanh tên Cán bộ đánh giá:</span>
             <div id="login_quick_chips_mount" style="display:flex; flex-wrap:wrap; gap:5px; justify-content:center; width:100%;">
-                <button type="button" class="quick-acc-btn" onclick="fillQuickLogin('hiendtt1', '')">👤 Dương Thị Thu Hiền</button>
+                <button type="button" class="quick-acc-btn" onclick="fillQuickLogin('hiendtt', '')">👤 Dương Thị Thu Hiền</button>
                 <button type="button" class="quick-acc-btn" onclick="fillQuickLogin('lamtq', '')">👤 Trương Quang Lâm</button>
                 <button type="button" class="quick-acc-btn" onclick="fillQuickLogin('longnv', '')">👤 Nguyễn Văn Long</button>
                 <button type="button" class="quick-acc-btn" onclick="fillQuickLogin('hienntt', '')">👤 Nguyễn Thị Thu Hiền</button>
                 <button type="button" class="quick-acc-btn" onclick="fillQuickLogin('minhtv', '')">👤 Trần Viết Minh</button>
-                <button type="button" class="quick-acc-btn" onclick="fillQuickLogin('anhnt14', '')">👤 Nguyễn Tuấn Anh</button>
+                <button type="button" class="quick-acc-btn" onclick="fillQuickLogin('anhnt', '')">👤 Nguyễn Tuấn Anh</button>
             </div>
         </div>
     </div>
@@ -1816,7 +1816,7 @@
                     <div class="info-grid" style="margin-bottom:8px;">
                         <div>
                             <label class="input-label">Tên đăng nhập (Username) *:</label>
-                            <input type="text" id="adm_u_username" class="form-control" placeholder="VD: anhnt">
+                            <input type="text" id="adm_u_username" class="form-control" placeholder="VD: anh.nt">
                         </div>
                         <div>
                             <label class="input-label">Họ và tên hiển thị *:</label>
@@ -1939,13 +1939,29 @@
                         </div>
                         <div style="display:flex; gap:6px;">
                             <button type="button" class="btn-basket-sm" id="btn_adm_cancel_crit" style="display:none;" onclick="resetAdminCritForm()">Hủy sửa</button>
-                            <button type="button" class="btn-basket-sm" style="background:#059669; color:#fff; border-color:#059669; padding:7px 16px;" onclick="saveAdminCriterion()">💾 Lưu Tiêu chí</button>
+                            <button type="button" class="btn-basket-sm" style="background:#059669; color:#fff; border-color:#059669; padding:7px 14px;" onclick="saveAdminCriterion()">➕ Thêm / Cập nhật mục đang nhập</button>
                         </div>
                     </div>
                 </div>
 
+                <!-- THANH LƯU THAY ĐỔI DANH SÁCH TIÊU CHÍ (KHI XÓA / KHÔI PHỤC / BẬT TẮT ẢNH MẪU) -->
+                <div style="background:#ecfdf5; border:1.5px solid #6ee7b7; border-radius:10px; padding:9px 12px; margin-bottom:8px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;">
+                    <div style="font-size:12px; color:#065f46; font-weight:600;">
+                        💡 Sau khi bấm <b>🗑 Xóa</b>, <b>↩ Khôi phục</b> hoặc <b>Bật/Tắt Mẫu</b> bên dưới, bấm nút Lưu để áp dụng:
+                        <span id="adm_deleted_count_badge" style="display:none; background:#fee2e2; color:#b91c1c; padding:1px 7px; border-radius:10px; font-size:11px; font-weight:700; margin-left:4px;"></span>
+                    </div>
+                    <div style="display:flex; gap:6px; flex-wrap:wrap;">
+                        <button type="button" class="btn-basket-sm" style="background:#059669; color:#fff; border-color:#059669; padding:6px 14px; font-weight:700;" onclick="confirmSaveCriteriaListChanges(false)">
+                            💾 Lưu danh sách tiêu chí
+                        </button>
+                        <button type="button" class="btn-basket-sm" style="background:#0052cc; color:#fff; border-color:#0052cc; padding:6px 14px; font-weight:700;" onclick="confirmSaveCriteriaListChanges(true)" title="Lưu và đẩy thẳng lên GitHub Cloud cho mọi máy">
+                            ☁️ Lưu &amp; Đồng bộ GitHub
+                        </button>
+                    </div>
+                </div>
+
                 <div style="display:flex; justify-content:space-between; align-items:center; gap:8px; margin-bottom:6px; flex-wrap:wrap;">
-                    <span style="font-weight:800; font-size:13px;">📋 Danh sách Tiêu chí (Bấm nút 👁️ Mẫu để Bật/Tắt nhanh ảnh mẫu từng mục):</span>
+                    <span style="font-weight:800; font-size:13px;">📋 Danh sách Tiêu chí (Bấm 🗑 Xóa để ẩn/bỏ tiêu chí hoặc ↩ Khôi phục lại):</span>
                     <select id="adm_filter_crit_sec" class="drawer-select" onchange="renderAdminCriteriaList()">
                         <option value="all">-- Tất cả 5 Khu vực --</option>
                         <option value="sec1">Tiêu chuẩn 1: Tiền sảnh</option>
@@ -2070,6 +2086,15 @@
                     </div>
                     <div id="adm_audit_logs_wrap" style="max-height:36vh; overflow-y:auto; font-size:12px; background:#fff; border:1px solid var(--slate-200); border-radius:8px; padding:8px;"></div>
                 </div>
+            </div>
+        </div>
+        <!-- THANH CHÂN MODAL QUẢN TRỊ: LƯU TẤT CẢ CẤU HÌNH NHANH Ở BẤT KỲ TAB NÀO -->
+        <div style="background:#f8fafc; border-top:1px solid #e2e8f0; padding:10px 16px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;">
+            <span style="font-size:11.5px; color:#475569; font-weight:600;" id="adm_footer_status_hint">✔ Mọi thay đổi về User, Tiêu chí (Thêm/Sửa/Xóa) &amp; Ảnh mẫu có thể lưu ngay tại đây.</span>
+            <div style="display:flex; gap:8px; flex-wrap:wrap;">
+                <button type="button" class="btn-basket-sm" onclick="closeAdminCenterModal()">Đóng</button>
+                <button type="button" class="btn-basket-sm" style="background:#059669; color:#fff; border-color:#059669; padding:7px 14px; font-weight:700;" onclick="confirmSaveCriteriaListChanges(false)">💾 Lưu toàn bộ thay đổi</button>
+                <button type="button" class="btn-basket-sm" style="background:#0052cc; color:#fff; border-color:#0052cc; padding:7px 14px; font-weight:700;" onclick="confirmSaveCriteriaListChanges(true)">☁️ Lưu &amp; Đẩy lên GitHub Cloud</button>
             </div>
         </div>
     </div>
@@ -2778,7 +2803,7 @@
             password: '123456a@',
             fullName: 'Quản trị viên Hệ thống',
             role: 'admin',
-            title: 'Admin Quản trị CLDV',
+            title: 'Admin ',
             active: true,
             perms: { eval: true, skipSec: true, batchPass: true, basketDel: true, editSample: true, printPdf: true, viewAllBasket: true, editPrintReport: true, customDeduct: true, addManualErr: true, allowedSecs: [1,2,3,4,5,6] }
         },
@@ -2787,7 +2812,7 @@
             password: '123',
             fullName: 'Dương Thị Thu Hiền',
             role: 'user',
-            title: 'Chuyên viên Đánh giá CLDV',
+            title: 'CVCC Đánh giá CLDV',
             active: true,
             perms: { eval: true, skipSec: true, batchPass: true, basketDel: true, editSample: false, printPdf: true, viewAllBasket: false, editPrintReport: true, customDeduct: true, addManualErr: true, allowedSecs: [1,2,3,4,5,6] }
         },
@@ -2796,7 +2821,7 @@
             password: '123',
             fullName: 'Trương Quang Lâm',
             role: 'user',
-            title: 'Chuyên viên Đánh giá CLDV',
+            title: 'CVC Đánh giá CLDV',
             active: true,
             perms: { eval: true, skipSec: true, batchPass: true, basketDel: true, editSample: false, printPdf: true, viewAllBasket: false, editPrintReport: true, customDeduct: true, addManualErr: true, allowedSecs: [1,2,3,4,5,6] }
         },
@@ -2805,7 +2830,7 @@
             password: '123',
             fullName: 'Nguyễn Văn Long',
             role: 'user',
-            title: 'Chuyên viên Đánh giá CLDV',
+            title: 'CVCC Đánh giá CLDV',
             active: true,
             perms: { eval: true, skipSec: true, batchPass: true, basketDel: true, editSample: false, printPdf: true, viewAllBasket: false, editPrintReport: true, customDeduct: true, addManualErr: true, allowedSecs: [1,2,3,4,5,6] }
         },
@@ -2814,7 +2839,7 @@
             password: '123',
             fullName: 'Nguyễn Thị Thu Hiền',
             role: 'user',
-            title: 'Chuyên viên Đánh giá CLDV',
+            title: 'CVCC Đánh giá CLDV',
             active: true,
             perms: { eval: true, skipSec: true, batchPass: true, basketDel: true, editSample: false, printPdf: true, viewAllBasket: false, editPrintReport: true, customDeduct: true, addManualErr: true, allowedSecs: [1,2,3,4,5,6] }
         },
@@ -2823,7 +2848,7 @@
             password: '123',
             fullName: 'Trần Viết Minh',
             role: 'user',
-            title: 'Chuyên viên Đánh giá CLDV',
+            title: 'Trưởng Bộ phận CLDV',
             active: true,
             perms: { eval: true, skipSec: true, batchPass: true, basketDel: true, editSample: false, printPdf: true, viewAllBasket: false, editPrintReport: true, customDeduct: true, addManualErr: true, allowedSecs: [1,2,3,4,5,6] }
         },
@@ -2832,7 +2857,7 @@
             password: '123',
             fullName: 'Nguyễn Tuấn Anh',
             role: 'user',
-            title: 'Chuyên viên Đánh giá CLDV',
+            title: 'CVC Đánh giá CLDV',
             active: true,
             perms: { eval: true, skipSec: true, batchPass: true, basketDel: true, editSample: false, printPdf: true, viewAllBasket: false, editPrintReport: true, customDeduct: true, addManualErr: true, allowedSecs: [1,2,3,4,5,6] }
         }
@@ -4174,6 +4199,25 @@
     }
 
     // === QUẢN TRỊ THÊM / SỬA / XÓA TIÊU CHUẨN & BẬT/TẮT ẢNH MẪU TỪNG TIÊU CHÍ ===
+    let baseCriteriaCatalog = [];
+
+    function captureBaseCriteriaCatalogIfNeeded() {
+        if (baseCriteriaCatalog.length > 0) return;
+        ['sec1', 'sec2', 'sec3', 'sec4', 'sec5'].forEach(secKey => {
+            const container = document.getElementById(`${secKey}_container`);
+            if (!container) return;
+            container.querySelectorAll('.row-item').forEach(row => {
+                const st = row.querySelector('.val-storage');
+                if (!st) return;
+                const id = st.getAttribute('data-id');
+                if (customCriteriaConfig.added && customCriteriaConfig.added.some(a => a.id === id)) return;
+                const shortTitle = document.getElementById('short_lbl_' + id)?.innerText || id;
+                const specText = getCriteriaStandardRequirement(id);
+                baseCriteriaCatalog.push({ id, secKey, shortTitle, spec: specText });
+            });
+        });
+    }
+
     function saveCustomCriteriaAndReRender() {
         try { localStorage.setItem(CUSTOM_CRITERIA_KEY, JSON.stringify(customCriteriaConfig)); } catch (e) {}
         const currentState = collectCurrentFormState();
@@ -4181,6 +4225,35 @@
         restoreStateObject(currentState);
         applyUserPermissionsToUI();
         renderAdminCriteriaList();
+        countFail();
+    }
+
+    function confirmSaveCriteriaListChanges(alsoPushCloud = false) {
+        // Nếu Admin đang gõ dở tiêu chí mới trên ô input mà bấm nút Lưu danh sách thì tự động lưu luôn tiêu chí đó
+        const pendingShort = (document.getElementById('adm_c_short')?.value || '').trim();
+        if (pendingShort) {
+            saveAdminCriterion();
+        } else {
+            saveCustomCriteriaAndReRender();
+        }
+        saveUsersDB();
+        try { localStorage.setItem(SYS_SETTINGS_KEY, JSON.stringify(systemSettings)); } catch (e) {}
+        try { localStorage.setItem(CUSTOM_UNITS_KEY, JSON.stringify(unitList)); } catch (e) {}
+
+        const delCnt = (customCriteriaConfig.deletedIds || []).length;
+        const addCnt = (customCriteriaConfig.added || []).length;
+        appendAuditLog(`Lưu cấu hình danh sách tiêu chí (Đã thêm: ${addCnt}, Đã xóa/ẩn: ${delCnt})`);
+
+        const hintEl = document.getElementById('adm_footer_status_hint');
+        if (hintEl) {
+            hintEl.innerHTML = `<b style="color:#059669;">💾 Đã lưu lúc ${new Date().toLocaleTimeString('vi-VN')} (Đang ẩn/xóa: ${delCnt} mục, Thêm mới: ${addCnt} mục)</b>`;
+        }
+
+        if (alsoPushCloud) {
+            pushConfigToGitHub();
+        } else {
+            showToast(`💾 Đã lưu cấu hình danh sách tiêu chí thành công! (Đang xóa/ẩn: ${delCnt} mục)`);
+        }
     }
 
     // Bật / Tắt hiển thị nút "Mẫu" cho 1 tiêu chí bất kỳ
@@ -4212,7 +4285,7 @@
 
         renderAdminCriteriaList();
         appendAuditLog(`${nowVisible ? 'Bật' : 'Tắt'} hiển thị nút Ảnh mẫu cho tiêu chí [${id}]`);
-        showToast(nowVisible ? `👁️ Đã BẬT hiển thị nút Ảnh mẫu cho mục ${id.replace(/_/g, '.')}!` : `🚫 Đã TẮT hiển thị nút Ảnh mẫu ở mục ${id.replace(/_/g, '.')}!`);
+        showToast(nowVisible ? `👁️ Đã BẬT nút Ảnh mẫu cho mục ${id.replace(/_/g, '.')} (Đã lưu)!` : `🚫 Đã TẮT nút Ảnh mẫu ở mục ${id.replace(/_/g, '.')} (Đã lưu)!`);
     }
 
     function adminHideSampleFromModal() {
@@ -4258,42 +4331,112 @@
     function renderAdminCriteriaList() {
         const wrap = document.getElementById('adm_criteria_list_wrap');
         if (!wrap) return;
+        captureBaseCriteriaCatalogIfNeeded();
+
         const filterSec = document.getElementById('adm_filter_crit_sec')?.value || 'all';
         const secKeys = filterSec === 'all' ? ['sec1', 'sec2', 'sec3', 'sec4', 'sec5'] : [filterSec];
+        const deletedIds = customCriteriaConfig.deletedIds || [];
+
+        const delBadge = document.getElementById('adm_deleted_count_badge');
+        if (delBadge) {
+            if (deletedIds.length > 0) {
+                delBadge.style.display = 'inline-block';
+                delBadge.innerText = `Đang xóa/ẩn: ${deletedIds.length} tiêu chí`;
+            } else {
+                delBadge.style.display = 'none';
+            }
+        }
+
+        // Kết hợp danh mục gốc + danh mục Admin tự thêm để hiển thị cả những mục đã bị đánh dấu Xóa
+        const allCatalogItems = [
+            ...baseCriteriaCatalog.map(item => {
+                const ov = (customCriteriaConfig.overrides && customCriteriaConfig.overrides[item.id]) ? customCriteriaConfig.overrides[item.id] : null;
+                return {
+                    id: item.id,
+                    secKey: item.secKey,
+                    shortTitle: ov ? ov.shortTitle : item.shortTitle,
+                    spec: ov ? ov.spec : item.spec,
+                    isCustomAdded: false
+                };
+            }),
+            ...(customCriteriaConfig.added || []).map(item => ({
+                id: item.id,
+                secKey: item.secKey,
+                shortTitle: item.shortTitle,
+                spec: item.spec || '',
+                isCustomAdded: true
+            }))
+        ];
 
         let html = '';
         secKeys.forEach(secKey => {
-            const container = document.getElementById(`${secKey}_container`);
-            if (!container) return;
-            container.querySelectorAll('.row-item').forEach(row => {
-                const st = row.querySelector('.val-storage');
-                if (!st) return;
-                const id = st.getAttribute('data-id');
-                const shortTitle = document.getElementById('short_lbl_' + id)?.innerText || id;
-                const specText = getCriteriaStandardRequirement(id);
+            const itemsInSec = allCatalogItems.filter(x => x.secKey === secKey);
+            itemsInSec.forEach(item => {
+                const id = item.id;
+                const isDeleted = deletedIds.includes(id);
                 const showSmp = isSampleVisibleForCriterion(id);
                 const hasRealImg = hasCustomOrDefaultSampleImg(id);
-                html += `
-                <div class="basket-item" style="background:#fff; padding:8px 10px; margin-bottom:6px; border-left-color:${showSmp ? '#10b981' : '#94a3b8'};">
-                    <div class="basket-item-info">
-                        <span style="font-size:10.5px; font-weight:700; color:#0052cc; background:#eff6ff; padding:1px 6px; border-radius:6px;">${secKey.toUpperCase()} • Mã: ${id}</span>
-                        <span style="font-size:10.5px; font-weight:700; padding:1px 6px; border-radius:6px; background:${showSmp ? '#ecfdf5' : '#f1f5f9'}; color:${showSmp ? '#047857' : '#64748b'};">
-                            ${showSmp ? (hasRealImg ? '🖼️ Đang hiện Mẫu (Có ảnh)' : '👁️ Đang hiện Mẫu (Mặc định)') : '🚫 Đã tắt nút Mẫu'}
-                        </span>
-                        <b style="display:block; margin-top:2px;">${shortTitle}</b>
-                        ${specText ? `<span style="font-size:11.5px; color:#64748b;">Quy chuẩn: ${specText}</span>` : ''}
-                    </div>
-                    <div class="basket-item-btns">
-                        <button type="button" class="btn-basket-sm" style="background:${showSmp ? '#ecfdf5' : '#f8fafc'}; color:${showSmp ? '#047857' : '#64748b'}; border-color:${showSmp ? '#a7f3d0' : '#cbd5e1'};" onclick="adminToggleCriterionSampleQuick('${id}')">
-                            ${showSmp ? '👁️ Bật Mẫu' : '🚫 Tắt Mẫu'}
-                        </button>
-                        <button type="button" class="btn-basket-sm" onclick="openAdminEditCriterionQuick('${id}', true)">✏️ Sửa</button>
-                        <button type="button" class="btn-basket-sm" style="color:#dc2626; border-color:#fca5a5;" onclick="adminDeleteCriterionQuick('${id}')">🗑 Xóa</button>
-                    </div>
-                </div>`;
+
+                if (isDeleted) {
+                    html += `
+                    <div class="basket-item" style="background:#fef2f2; padding:8px 10px; margin-bottom:6px; border-left:4px solid #ef4444; opacity:0.88;">
+                        <div class="basket-item-info">
+                            <span style="font-size:10.5px; font-weight:700; color:#b91c1c; background:#fee2e2; padding:1px 6px; border-radius:6px;">${secKey.toUpperCase()} • Mã: ${id} (ĐÃ XÓA / ẨN KHỎI PHIẾU)</span>
+                            <b style="display:block; margin-top:2px; text-decoration:line-through; color:#7f1d1d;">${item.shortTitle}</b>
+                        </div>
+                        <div class="basket-item-btns">
+                            <button type="button" class="btn-basket-sm" style="background:#059669; color:#fff; border-color:#059669;" onclick="adminRestoreDeletedCriterion('${id}')">
+                                ↩ Khôi phục lại
+                            </button>
+                            ${item.isCustomAdded ? `<button type="button" class="btn-basket-sm" style="color:#dc2626; border-color:#fca5a5;" onclick="adminPermanentlyRemoveCustomCriterion('${id}')">🗑 Xóa hẳn</button>` : ''}
+                        </div>
+                    </div>`;
+                } else {
+                    html += `
+                    <div class="basket-item" style="background:#fff; padding:8px 10px; margin-bottom:6px; border-left-color:${showSmp ? '#10b981' : '#94a3b8'};">
+                        <div class="basket-item-info">
+                            <span style="font-size:10.5px; font-weight:700; color:#0052cc; background:#eff6ff; padding:1px 6px; border-radius:6px;">${secKey.toUpperCase()} • Mã: ${id}${item.isCustomAdded ? ' (Mới thêm)' : ''}</span>
+                            <span style="font-size:10.5px; font-weight:700; padding:1px 6px; border-radius:6px; background:${showSmp ? '#ecfdf5' : '#f1f5f9'}; color:${showSmp ? '#047857' : '#64748b'};">
+                                ${showSmp ? (hasRealImg ? '🖼️ Đang hiện Mẫu (Có ảnh)' : '👁️ Đang hiện Mẫu (Mặc định)') : '🚫 Đã tắt nút Mẫu'}
+                            </span>
+                            <b style="display:block; margin-top:2px;">${item.shortTitle}</b>
+                            ${item.spec ? `<span style="font-size:11.5px; color:#64748b;">Quy chuẩn: ${item.spec}</span>` : ''}
+                        </div>
+                        <div class="basket-item-btns">
+                            <button type="button" class="btn-basket-sm" style="background:${showSmp ? '#ecfdf5' : '#f8fafc'}; color:${showSmp ? '#047857' : '#64748b'}; border-color:${showSmp ? '#a7f3d0' : '#cbd5e1'};" onclick="adminToggleCriterionSampleQuick('${id}')">
+                                ${showSmp ? '👁️ Bật Mẫu' : '🚫 Tắt Mẫu'}
+                            </button>
+                            <button type="button" class="btn-basket-sm" onclick="openAdminEditCriterionQuick('${id}', true)">✏️ Sửa</button>
+                            <button type="button" class="btn-basket-sm" style="color:#dc2626; border-color:#fca5a5;" onclick="adminDeleteCriterionQuick('${id}')">🗑 Xóa</button>
+                        </div>
+                    </div>`;
+                }
             });
         });
         wrap.innerHTML = html || `<p style="color:#64748b; text-align:center;">Không có tiêu chí nào trong khu vực này.</p>`;
+    }
+
+    function adminRestoreDeletedCriterion(id) {
+        if (!currentUser || currentUser.role !== 'admin') return;
+        if (Array.isArray(customCriteriaConfig.deletedIds)) {
+            customCriteriaConfig.deletedIds = customCriteriaConfig.deletedIds.filter(x => x !== id);
+        }
+        appendAuditLog(`Khôi phục lại tiêu chí [${id}]`);
+        saveCustomCriteriaAndReRender();
+        showToast(`↩ Đã khôi phục tiêu chí [${id}] vào phiếu đánh giá!`);
+    }
+
+    function adminPermanentlyRemoveCustomCriterion(id) {
+        if (!currentUser || currentUser.role !== 'admin') return;
+        if (Array.isArray(customCriteriaConfig.added)) {
+            customCriteriaConfig.added = customCriteriaConfig.added.filter(x => x.id !== id);
+        }
+        if (Array.isArray(customCriteriaConfig.deletedIds)) {
+            customCriteriaConfig.deletedIds = customCriteriaConfig.deletedIds.filter(x => x !== id);
+        }
+        appendAuditLog(`Xóa vĩnh viễn tiêu chí tự thêm [${id}]`);
+        saveCustomCriteriaAndReRender();
+        showToast(`🗑 Đã xóa vĩnh viễn tiêu chí [${id}]!`);
     }
 
     function openAdminEditCriterionQuick(id, alreadyInModal = false) {
@@ -4340,7 +4483,7 @@
         const spec = (document.getElementById('adm_c_spec').value || '').trim();
         const wantShowSample = document.getElementById('adm_c_show_sample').checked;
         if (!shortTitle) {
-            showToast("⚠ Vui lòng nhập Tên ngắn tiêu chí!");
+            showToast("⚠ Vui lòng nhập Tên ngắn tiêu chí (hoặc bấm nút '💾 Lưu danh sách tiêu chí' màu xanh ở dưới nếu bạn chỉ xóa/ẩn tiêu chí)!");
             return;
         }
 
@@ -4383,6 +4526,7 @@
 
     function adminDeleteCriterionQuick(id) {
         if (!currentUser || currentUser.role !== 'admin') return;
+        captureBaseCriteriaCatalogIfNeeded();
         if (!customCriteriaConfig.deletedIds) customCriteriaConfig.deletedIds = [];
         if (!customCriteriaConfig.deletedIds.includes(id)) {
             customCriteriaConfig.deletedIds.push(id);
@@ -4390,7 +4534,11 @@
         removeInlineRowFromErrorList(id);
         appendAuditLog(`Xóa/Ẩn tiêu chí [${id}]`);
         saveCustomCriteriaAndReRender();
-        showToast(`🗑 Đã ẩn/xóa tiêu chí [${id}] khỏi biểu mẫu!`);
+        const hintEl = document.getElementById('adm_footer_status_hint');
+        if (hintEl) {
+            hintEl.innerHTML = `<b style="color:#d97706;">⚠️ Đã đánh dấu xóa mục [${id}]. Bấm "💾 Lưu toàn bộ thay đổi" hoặc "☁️ Lưu & Đẩy lên GitHub Cloud" để hoàn tất!</b>`;
+        }
+        showToast(`🗑 Đã xóa/ẩn tiêu chí [${id}]! Bấm '💾 Lưu danh sách tiêu chí' hoặc '☁️ Lưu & Đồng bộ GitHub' để áp dụng.`);
     }
 
     function resetDefaultCriteriaCatalog() {
@@ -6698,7 +6846,15 @@
     // KHỞI TẠO CHÍNH KHI MỞ TRANG (LUÔN BẮT ĐẦU Ở TRẠNG THÁI PHIẾU MỚI CHƯA NHẬP)
     window.addEventListener('DOMContentLoaded', async function() {
         loadRBACAndConfigFromStorage();
+        // Lưu danh mục 62 tiêu chí chuẩn gốc trước khi áp dụng bộ lọc xóa của Admin
+        const savedDeleted = customCriteriaConfig.deletedIds ? [...customCriteriaConfig.deletedIds] : [];
+        customCriteriaConfig.deletedIds = [];
         renderAllSectionsOnce();
+        captureBaseCriteriaCatalogIfNeeded();
+        customCriteriaConfig.deletedIds = savedDeleted;
+        if (savedDeleted.length > 0) {
+            renderAllSectionsOnce();
+        }
 
         document.getElementById('inputScreen').style.display = 'block';
         document.getElementById('print-section').style.display = 'none';
@@ -7180,7 +7336,7 @@
         document.getElementById('floatingQuickJump').style.display = 'flex';
         const fabBar = document.querySelector('.fab-bar');
         if (fabBar) fabBar.style.display = 'flex';
-        document.title = "Phiếu Đánh Giá CLDV (98 Đơn Vị) - Bản Hiện Đại 2026";
+        document.title = "Phiếu Đánh Giá CLDV tại ĐVKD";
     }
 
     function executePrint() {
